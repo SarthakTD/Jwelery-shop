@@ -1,0 +1,34 @@
+import React from 'react';
+
+const Navigation = () => {
+    const navItems = [
+        { name: 'New Arrivals', href: '#' },
+        { name: 'Best Seller', href: '#' },
+        { name: 'Fine Silver', href: '#' },
+        { name: 'Fine Jewellery', href: '#', badge: 'new' },
+        { name: 'Emily In Paris', href: '#', badge: 'trending' },
+        { name: 'Shraddha\'s Favourite', href: '#' },
+        { name: 'Demi-fine Jewellery', href: '#' },
+        { name: 'Gifting', href: '#' },
+        { name: 'About Us', href: '#' }
+    ];
+
+    return (
+        <nav className="main-nav">
+            <div className="container">
+                <ul className="nav-menu">
+                    {navItems.map((item, index) => (
+                        <li key={index}>
+                            <a href={item.href} className={item.badge ? `nav-badge ${item.badge}` : ''}>
+                                {item.name}
+                                {item.badge && <span className="badge-text">{item.badge}</span>}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </nav>
+    );
+};
+
+export default Navigation;
