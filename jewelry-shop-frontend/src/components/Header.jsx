@@ -9,6 +9,17 @@ const Header = () => {
     const [currentCharIndex, setCurrentCharIndex] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
     const [showCursor, setShowCursor] = useState(true);
+    const [isMobile, setIsMobile] = useState(false);
+
+    // Detect mobile
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     // Array of search suggestions
     const searchSuggestions = [
@@ -24,29 +35,26 @@ const Header = () => {
         'Search for nose pins...'
     ];
 
+    // Typing animation logic (same as before)
     useEffect(() => {
         const currentSuggestion = searchSuggestions[currentSuggestionIndex];
 
         const typeTimeout = setTimeout(() => {
             if (!isDeleting && currentCharIndex < currentSuggestion.length) {
-                // Typing forward
                 setPlaceholderText(currentSuggestion.substring(0, currentCharIndex + 1));
                 setCurrentCharIndex(currentCharIndex + 1);
             } else if (!isDeleting && currentCharIndex === currentSuggestion.length) {
-                // Pause before deleting
                 setTimeout(() => setIsDeleting(true), 2000);
             } else if (isDeleting && currentCharIndex > 0) {
-                // Deleting backward
                 setPlaceholderText(currentSuggestion.substring(0, currentCharIndex - 1));
                 setCurrentCharIndex(currentCharIndex - 1);
             } else if (isDeleting && currentCharIndex === 0) {
-                // Move to next suggestion
                 setIsDeleting(false);
                 setCurrentSuggestionIndex((prevIndex) =>
                     (prevIndex + 1) % searchSuggestions.length
                 );
             }
-        }, isDeleting ? 50 : 100); // Faster deletion, slower typing
+        }, isDeleting ? 50 : 100);
 
         return () => clearTimeout(typeTimeout);
     }, [currentCharIndex, currentSuggestionIndex, isDeleting, searchSuggestions]);
@@ -71,7 +79,6 @@ const Header = () => {
 
     const handleInputBlur = () => {
         if (!searchQuery) {
-            // Resume animation when input loses focus and is empty
             setCurrentCharIndex(0);
             setIsDeleting(false);
         }
@@ -81,37 +88,40 @@ const Header = () => {
         <header className="header">
             <div className="container">
                 <div className="logo">
-                    <h1>PALMONAS</h1>
+                    <h1>Rokdeshwar jwelers</h1>
                 </div>
 
-                <form className="search-container" onSubmit={handleSearch}>
-                    <input
-                        type="text"
-                        placeholder={placeholderText + (showCursor && !searchQuery ? '|' : '')}
-                        className="search-input animated-placeholder"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        onFocus={handleInputFocus}
-                        onBlur={handleInputBlur}
-                    />
-                    <button type="submit" className="search-btn">
-                        <FontAwesomeIcon icon={faSearch} />
-                    </button>
-                </form>
+                {/* Mobile: Search and Actions side by side */}
+                <div className={`search-and-actions ${isMobile ? 'mobile-layout' : ''}`}>
+                    <form className="search-container" onSubmit={handleSearch}>
+                        <input
+                            type="text"
+                            placeholder={placeholderText + (showCursor && !searchQuery ? '|' : '')}
+                            className="search-input animated-placeholder"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            onFocus={handleInputFocus}
+                            onBlur={handleInputBlur}
+                        />
+                        <button type="submit" className="search-btn">
+                            <FontAwesomeIcon icon={faSearch} />
+                        </button>
+                    </form>
 
-                <div className="header-actions">
-                    <button className="action-btn">
-                        <FontAwesomeIcon icon={faUser} />
-                        <span className="badge">0</span>
-                    </button>
-                    <button className="action-btn">
-                        <FontAwesomeIcon icon={faHeart} />
-                        <span className="badge">0</span>
-                    </button>
-                    <button className="action-btn">
-                        <FontAwesomeIcon icon={faShoppingBag} />
-                        <span className="badge">0</span>
-                    </button>
+                    <div className="header-actions">
+                        <button className="action-btn">
+                            <FontAwesomeIcon icon={faUser} />
+                            <span className="badge">0</span>
+                        </button>
+                        <button className="action-btn">
+                            <FontAwesomeIcon icon={faHeart} />
+                            <span className="badge">0</span>
+                        </button>
+                        <button className="action-btn">
+                            <FontAwesomeIcon icon={faShoppingBag} />
+                            <span className="badge">0</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </header>
