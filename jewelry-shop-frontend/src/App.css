@@ -1,3 +1,6 @@
+/* ===========================
+   Global Reset & Base Styles
+   =========================== */
 * {
     margin: 0;
     padding: 0;
@@ -17,7 +20,9 @@ body {
     padding: 0 20px;
 }
 
-/* Top Banner */
+/* ============
+   Top Banner
+   ============ */
 .top-banner {
     background: linear-gradient(135deg, #2c1810, #4a2c1a);
     color: white;
@@ -46,7 +51,9 @@ body {
     50% { transform: scale(1.05); }
 }
 
-/* Header */
+/* ============
+   Header
+   ============ */
 .header {
     background: white;
     padding: 15px 0;
@@ -55,13 +62,16 @@ body {
     z-index: 999;
 }
 
+/* DESKTOP: force items in one row, don't wrap */
 .header .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 30px;
+    flex-wrap: nowrap; /* prevents wrapping on desktop */
 }
 
+/* Logo */
 .logo h1 {
     font-size: 32px;
     font-weight: bold;
@@ -69,13 +79,16 @@ body {
     letter-spacing: 3px;
     cursor: pointer;
     transition: color 0.3s ease;
+    white-space: nowrap; /* keep brand on single line */
 }
 
 .logo h1:hover {
     color: #c9a961;
 }
 
-/* Search Container with Animation */
+/* =========================
+   Search Container & Input
+   ========================= */
 .search-container {
     flex: 1;
     max-width: 500px;
@@ -133,7 +146,7 @@ body {
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-/* Header Actions */
+/* Header Actions (icons) */
 .header-actions {
     display: flex;
     gap: 20px;
@@ -181,7 +194,7 @@ body {
     100% { transform: scale(1); }
 }
 
-/* Mobile Search and Actions Container */
+/* Group: Search + Actions (used for mobile layout) */
 .search-and-actions {
     display: flex;
     align-items: center;
@@ -189,12 +202,15 @@ body {
     width: 100%;
 }
 
+/* For React: when you add 'mobile-layout' class we support it */
 .search-and-actions.mobile-layout {
     flex-direction: row;
     justify-content: space-between;
 }
 
-/* Navigation */
+/* ============
+   Navigation
+   ============ */
 .main-nav {
     background: white;
     border-bottom: 2px solid #f0f0f0;
@@ -312,7 +328,9 @@ body {
     background: linear-gradient(90deg, #b8975a, #a68968);
 }
 
-/* Hero Section with Advanced Carousel - UPDATED */
+/* ======================================
+   Hero Section with Advanced Carousel
+   ====================================== */
 .hero {
     position: relative;
     min-height: 650px;
@@ -348,6 +366,7 @@ body {
     justify-content: center;
 }
 
+/* Image rendering fallbacks and vendor prefixed options */
 .hero-model-image {
     position: absolute;
     max-width: 100%;
@@ -359,8 +378,15 @@ body {
     transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 20px 40px rgba(0,0,0,0.3);
     filter: brightness(1.1) contrast(1.05);
+
+    /* fallbacks for image-rendering (some editors warn; these are safe) */
+    image-rendering: auto;
     image-rendering: -webkit-optimize-contrast;
+    image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
+    /* pixelated last as modern option */
+    image-rendering: pixelated;
+
     backface-visibility: hidden;
     transform-style: preserve-3d;
 }
@@ -385,7 +411,7 @@ body {
     max-width: 480px;
 }
 
-/* FIXED: Reduced text spacing */
+/* Reduced text spacing for big headings */
 .offer-title {
     font-size: 4.5rem;
     font-weight: 900;
@@ -413,25 +439,13 @@ body {
 }
 
 @keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-80px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+    from { opacity: 0; transform: translateX(-80px); }
+    to   { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translateX(80px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+    from { opacity: 0; transform: translateX(80px); }
+    to   { opacity: 1; transform: translateX(0); }
 }
 
 .offer-code {
@@ -444,14 +458,8 @@ body {
 }
 
 @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 .shop-now-btn {
@@ -472,21 +480,10 @@ body {
 }
 
 @keyframes bounceInUp {
-    0% {
-        opacity: 0;
-        transform: translateY(100px) scale(0.8);
-    }
-    60% {
-        opacity: 1;
-        transform: translateY(-10px) scale(1.05);
-    }
-    80% {
-        transform: translateY(5px) scale(0.98);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+    0% { opacity: 0; transform: translateY(100px) scale(0.8); }
+    60% { opacity: 1; transform: translateY(-10px) scale(1.05); }
+    80% { transform: translateY(5px) scale(0.98); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .shop-now-btn:hover {
@@ -503,10 +500,7 @@ body {
     margin-bottom: 0;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
 /* Navigation Arrows */
 .hero-nav {
@@ -531,15 +525,10 @@ body {
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
-.hero-nav.prev {
-    left: 30px;
-}
+.hero-nav.prev { left: 30px; }
+.hero-nav.next { right: 30px; }
 
-.hero-nav.next {
-    right: 30px;
-}
-
-/* Slide Indicators - FIXED positioning */
+/* Slide Indicators */
 .slide-indicators {
     position: absolute;
     bottom: 50px;
@@ -567,10 +556,7 @@ body {
     box-shadow: 0 0 15px rgba(255,255,255,0.6);
 }
 
-.indicator:hover {
-    background-color: rgba(255,255,255,0.8);
-    transform: scale(1.2);
-}
+.indicator:hover { transform: scale(1.2); }
 
 .indicator.error {
     background-color: red !important;
@@ -585,9 +571,9 @@ body {
     width: 100%;
     height: 6px;
     background: linear-gradient(90deg,
-    rgba(255,255,255,0.2),
-    rgba(255,255,255,0.3),
-    rgba(255,255,255,0.2)
+        rgba(255,255,255,0.2),
+        rgba(255,255,255,0.3),
+        rgba(255,255,255,0.2)
     );
     z-index: 10;
 }
@@ -599,7 +585,9 @@ body {
     box-shadow: 0 0 10px rgba(255,255,255,0.5);
 }
 
-/* UPDATED MOBILE RESPONSIVENESS - FIXED HEADER LAYOUT AND DOTS OVERLAP */
+/* ======================================
+   Responsive Adjustments (desktop -> tablet -> mobile)
+   ====================================== */
 @media (max-width: 1024px) {
     .hero-text {
         padding: 30px 25px;
@@ -611,35 +599,21 @@ body {
         line-height: 0.8;
     }
 
-    .offer-code {
-        margin-bottom: 18px;
-    }
+    .offer-code { margin-bottom: 18px; }
 
-    .shop-now-btn {
-        margin-bottom: 10px;
-    }
+    .shop-now-btn { margin-bottom: 10px; }
 
-    .slide-indicators {
-        bottom: 45px;
-    }
+    .slide-indicators { bottom: 45px; }
 
-    .hero-nav {
-        padding: 15px;
-        font-size: 20px;
-    }
+    .hero-nav { padding: 15px; font-size: 20px; }
 
-    .slides-container {
-        height: 450px;
-    }
+    .slides-container { height: 450px; }
 
-    .hero-model-image {
-        max-width: 95%;
-        max-height: 95%;
-    }
+    .hero-model-image { max-width: 95%; max-height: 95%; }
 }
 
+/* Mobile layout: Logo on top; Search + Actions side-by-side below */
 @media (max-width: 768px) {
-    /* FIXED MOBILE HEADER LAYOUT - Icons beside search */
     .header .container {
         flex-direction: column;
         gap: 15px;
@@ -650,7 +624,6 @@ body {
         text-align: center;
     }
 
-    /* Search and actions side by side */
     .search-and-actions {
         order: 2;
         display: flex;
@@ -684,9 +657,7 @@ body {
         padding: 0 10px;
     }
 
-    .nav-menu a {
-        font-size: 13px;
-    }
+    .nav-menu a { font-size: 13px; }
 
     .hero {
         min-height: 600px;
@@ -699,7 +670,7 @@ body {
         min-height: 600px;
     }
 
-    /* FIXED: Mobile image container - Images first on mobile */
+    /* Mobile image container adjustments */
     .hero-image {
         order: 1;
         padding: 25px;
@@ -712,7 +683,6 @@ body {
         min-height: 380px;
     }
 
-    /* FIXED: Mobile slides container */
     .slides-container {
         position: relative;
         width: 100%;
@@ -722,7 +692,6 @@ body {
         justify-content: center;
     }
 
-    /* FIXED: Mobile hero images - Force display and optimize sizing */
     .hero-model-image {
         position: absolute !important;
         max-width: 85% !important;
@@ -733,12 +702,8 @@ body {
         border-radius: 15px;
         transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-        /* Mobile-specific image properties */
-        image-rendering: -webkit-optimize-contrast;
-        image-rendering: crisp-edges;
         backface-visibility: hidden;
         transform-style: preserve-3d;
-        /* Force visibility */
         display: block !important;
         visibility: visible !important;
     }
@@ -749,16 +714,13 @@ body {
         filter: brightness(1.1) contrast(1.05) drop-shadow(0 10px 20px rgba(0,0,0,0.3));
     }
 
-    /* FIXED: Mobile text spacing and dots positioning */
     .hero-text {
         order: 2;
         padding: 15px 20px;
         flex: 1;
     }
 
-    .offer-card {
-        max-width: 100%;
-    }
+    .offer-card { max-width: 100%; }
 
     .offer-title,
     .offer-subtitle {
@@ -772,20 +734,15 @@ body {
         margin-bottom: 15px;
     }
 
-    .shop-now-btn {
-        margin-bottom: 8px;
-    }
+    .shop-now-btn { margin-bottom: 8px; }
 
     .offer-terms {
         font-size: 14px;
         margin-bottom: 0;
     }
 
-    .hero-nav {
-        display: none;
-    }
+    .hero-nav { display: none; }
 
-    /* FIXED: Mobile dots positioning to avoid overlap */
     .slide-indicators {
         bottom: 60px !important;
         gap: 12px;
@@ -797,94 +754,55 @@ body {
     }
 }
 
+/* Extra-small phones */
 @media (max-width: 480px) {
-    .container {
-        padding: 0 15px;
-    }
+    .container { padding: 0 15px; }
 
-    .top-banner {
-        font-size: 12px;
-        padding: 8px 0;
-    }
+    .top-banner { font-size: 12px; padding: 8px 0; }
 
-    .promo-code {
-        padding: 3px 8px;
-        font-size: 10px;
-    }
+    .promo-code { padding: 3px 8px; font-size: 10px; }
 
     .logo h1 {
         font-size: 26px;
         letter-spacing: 1px;
     }
 
-    /* Further optimize mobile header for small screens */
-    .search-and-actions {
-        gap: 10px;
-    }
+    .search-and-actions { gap: 10px; }
 
     .search-input {
         padding: 11px 40px 11px 16px;
         font-size: 12px;
     }
 
-    .header-actions {
-        gap: 8px;
-    }
+    .header-actions { gap: 8px; }
 
-    .action-btn {
-        font-size: 16px;
-        padding: 8px;
-    }
+    .action-btn { font-size: 16px; padding: 8px; }
 
     .action-btn .badge {
-        width: 16px;
-        height: 16px;
-        font-size: 9px;
+        width: 16px; height: 16px; font-size: 9px;
     }
 
-    .nav-menu {
-        gap: 15px;
-        padding: 0 5px;
-    }
+    .nav-menu { gap: 15px; padding: 0 5px; }
 
-    .nav-menu a {
-        font-size: 12px;
-    }
+    .nav-menu a { font-size: 12px; }
 
-    .hero {
-        min-height: 550px;
-        padding-bottom: 120px;
-    }
+    .hero { min-height: 550px; padding-bottom: 120px; }
 
-    .hero-content {
-        min-height: 550px;
-    }
+    .hero-content { min-height: 550px; }
 
-    /* FIXED: Small mobile image container */
-    .hero-image {
-        padding: 20px;
-        min-height: 320px;
-    }
+    .hero-image { padding: 20px; min-height: 320px; }
 
-    .slides-container {
-        height: 320px;
-        width: 100%;
-        position: relative;
-    }
+    .slides-container { height: 320px; width: 100%; position: relative; }
 
     .hero-model-image {
         max-width: 80% !important;
         max-height: 80% !important;
         object-fit: contain !important;
-        /* Force image display on small screens */
         display: block !important;
         visibility: visible !important;
     }
 
-    /* FIXED: Extra tight spacing for small mobile */
-    .hero-text {
-        padding: 10px 15px;
-    }
+    .hero-text { padding: 10px 15px; }
 
     .offer-title,
     .offer-subtitle {
@@ -893,10 +811,7 @@ body {
         margin-bottom: 4px;
     }
 
-    .offer-code {
-        font-size: 1.3rem;
-        margin-bottom: 12px;
-    }
+    .offer-code { font-size: 1.3rem; margin-bottom: 12px; }
 
     .shop-now-btn {
         padding: 15px 35px;
@@ -904,25 +819,19 @@ body {
         margin-bottom: 6px;
     }
 
-    /* FIXED: Small mobile dots positioning */
     .slide-indicators {
         bottom: 80px !important;
         gap: 10px;
     }
 
-    .slide-progress {
-        height: 4px;
-    }
+    .slide-progress { height: 4px; }
 }
 
-/* Enhanced Mobile Image Loading */
+/* ======================================================
+   Mobile image loading placeholder (CSS fallback only)
+   - Note: use <img loading="eager"> in markup for eagerness
+   ====================================================== */
 @media (max-width: 768px) {
-    .hero-model-image {
-        /* Ensure images load properly on mobile */
-        loading: eager;
-    }
-
-    /* Loading placeholder for mobile */
     .hero-model-image:not([src]) {
         background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
         background-size: 200% 100%;
@@ -940,7 +849,9 @@ body {
     }
 }
 
-/* Focus Styles for Accessibility */
+/* =========================
+   Accessibility Focus
+   ========================= */
 .search-input:focus,
 .action-btn:focus,
 .nav-menu a:focus,
@@ -951,7 +862,7 @@ body {
     outline-offset: 2px;
 }
 
-/* High Performance Optimizations */
+/* Performance hints */
 .hero-model-image,
 .slides-container {
     will-change: transform, opacity;
@@ -962,7 +873,7 @@ body {
     will-change: transform;
 }
 
-/* Print Styles */
+/* Print styles */
 @media print {
     .hero-nav,
     .slide-indicators,
@@ -975,7 +886,5 @@ body {
         background: white !important;
     }
 
-    .hero-content {
-        color: black !important;
-    }
+    .hero-content { color: black !important; }
 }

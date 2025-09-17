@@ -88,7 +88,7 @@ const Header = () => {
         <header className="header">
             <div className="container">
                 <div className="logo">
-                    <h1>Rokdeshwar jwelers</h1>
+                    <h1>Rokadeshwar Jewellers</h1>
                 </div>
 
                 {/* Mobile: Search and Actions side by side */}
