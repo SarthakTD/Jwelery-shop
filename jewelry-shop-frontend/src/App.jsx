@@ -20,3 +20,5 @@ function App() {
 
 export default App;
 //Snehal
+//Welcome to the Jewelry Shop!
+//jhfkjghkjdfhkfhjkfgk
