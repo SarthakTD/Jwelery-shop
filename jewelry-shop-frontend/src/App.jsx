@@ -22,3 +22,4 @@ export default App;
 //Snehal
 //Welcome to the Jewelry Shop!
 //jhfkjghkjdfhkfhjkfgk
+//hi new nbjhbjhkjk
