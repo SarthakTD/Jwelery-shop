@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { useAdminAuth } from '../auth/AdminAuthContext';
 
-const baseURL = process.env.REACT_APP_API_BASE || 'http://localhost:8080';
+const baseURL = process.env.REACT_APP_API_BASE || 'https://jewelry-admin-1.onrender.com/api/products';
 
 export const makeAdminAxios = (token) => {
   return axios.create({
