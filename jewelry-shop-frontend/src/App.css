@@ -888,3 +888,12 @@ body {
 
     .hero-content { color: black !important; }
 }
+/* In App.css or Header.css */
+.brand-link {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+.brand-link:hover h1 {
+  color: #c9a961; /* matches your existing hover color */
+}

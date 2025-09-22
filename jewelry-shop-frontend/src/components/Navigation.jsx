@@ -1,9 +1,9 @@
 import React from 'react';
-
+import { NavLink } from 'react-router-dom';
 const Navigation = () => {
     const navItems = [
         { name: 'New Arrivals', href: '#' },
-        { name: 'Best Seller', href: '#' },
+        { name: 'Best Seller', href: '/best-seller' },
         { name: 'Fine Silver', href: '#' },
         { name: 'Fine Jewellery', href: '#', badge: 'new' },
         { name: 'Emily In Paris', href: '#', badge: 'trending' },
