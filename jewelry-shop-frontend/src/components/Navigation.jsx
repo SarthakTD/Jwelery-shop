@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 const Navigation = () => {
     const navItems = [
-        { name: 'New Arrivals', href: '#' },
+        { name: 'New Arrivals', href: '/new-arrivals' },
         { name: 'Best Seller', href: '/best-seller' },
         { name: 'Fine Silver', href: '#' },
         { name: 'Fine Jewellery', href: '#', badge: 'new' },
@@ -19,10 +19,10 @@ const Navigation = () => {
                 <ul className="nav-menu">
                     {navItems.map((item, index) => (
                         <li key={index}>
-                            <a href={item.href} className={item.badge ? `nav-badge ${item.badge}` : ''}>
+                            <NavLink to={item.href} className={item.badge ? `nav-badge ${item.badge}` : ''}>
                                 {item.name}
                                 {item.badge && <span className="badge-text">{item.badge}</span>}
-                            </a>
+                            </NavLink>
                         </li>
                     ))}
                 </ul>

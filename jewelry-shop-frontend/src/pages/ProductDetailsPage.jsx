@@ -1,23 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import http from '../api/http';
 import './ProductDetails.css';
 
 const ProductDetailsPage = () => {
   const { id } = useParams();
-  const [p, setP] = useState(null);
+  const location = useLocation();
+  const [p, setP] = useState(location.state?.product || null);
   const [hero, setHero] = useState('');
 
   useEffect(() => {
-    const load = async () => {
-      const res = await http.get(`/api/products/${id}`);
-      const prod = res.data;
-      setP(prod);
-      const first = prod.imageUrl || (prod.images && prod.images[0]);
-      setHero(first || 'https://via.placeholder.com/800x600?text=Image');
-    };
-    load();
-  }, [id]);
+    if (location.state?.product) {
+      setP(location.state.product);
+      setHero(location.state.product.image || 'https://via.placeholder.com/800x600?text=Image');
+    } else {
+      const load = async () => {
+        const res = await http.get(`/api/products/${id}`);
+        const prod = res.data;
+        setP(prod);
+        const first = prod.imageUrl || (prod.images && prod.images[0]);
+        setHero(first || 'https://via.placeholder.com/800x600?text=Image');
+      };
+      load();
+    }
+  }, [id, location.state]);
 
   if (!p) return <div className="container" style={{ padding: '40px 0' }}><h2>Loading...</h2></div>;
 
@@ -27,19 +33,19 @@ const ProductDetailsPage = () => {
         <nav className="breadcrumb">
           <Link to="/">Home</Link> <span>›</span>
           <Link to="/best-seller"> Best Seller</Link> <span>›</span>
-          <span>{p.title}</span>
+          <span>{p.title || p.name}</span>
         </nav>
 
         <div className="details-layout">
           <div className="media-block">
             <div className="hero-img">
-              <img id="pd-hero" src={hero} alt={p.title} onError={(e)=>{e.currentTarget.src='https://via.placeholder.com/800x600?text=Image';}} />
+              <img id="pd-hero" src={hero} alt={p.title || p.name} onError={(e)=>{e.currentTarget.src='https://via.placeholder.com/800x600?text=Image';}} />
             </div>
             {(p.images && p.images.length > 1) && (
               <div className="thumbs">
                 {p.images.map((src, idx) => (
                   <button key={idx} className="thumb-btn" onClick={()=> setHero(src)}>
-                    <img src={src} alt={`${p.title} ${idx+1}`} onError={(e)=>{e.currentTarget.src='https://via.placeholder.com/120?text=NA';}} />
+                    <img src={src} alt={`${p.title || p.name} ${idx+1}`} onError={(e)=>{e.currentTarget.src='https://via.placeholder.com/120?text=NA';}} />
                   </button>
                 ))}
               </div>
@@ -47,7 +53,7 @@ const ProductDetailsPage = () => {
           </div>
 
           <div className="highlights-block">
-            <h3>Classic, Charismatic Sophistication</h3>
+            <h3>{p.title || p.name}</h3>
             <div className="highlight-list">
               {(p.highlights || []).map((h, i) => (
                 <div key={i} className="highlight-item">
@@ -72,7 +78,7 @@ const ProductDetailsPage = () => {
               <li><span>Brand:</span> {p.specs?.brand || '-'}</li>
             </ul>
             <p style={{ marginTop: 10, fontWeight: 700 }}>
-              Price: ₹ {Number(p.price).toLocaleString('en-IN')}
+              Price: ₹ {Number(p.price || p.price === 0 ? p.price : (10000 + (p.id || 1) * 500)).toLocaleString('en-IN')}
             </p>
           </div>
         </div>

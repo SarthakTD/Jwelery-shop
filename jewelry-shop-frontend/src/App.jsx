@@ -8,6 +8,7 @@ import Hero from './components/Hero';
 import CategoryShowcase from './components/CategoryShowcase';
 
 import BestSellerPage from './pages/BestSellerPage';
+import NewArrivals from './components/NewArrivals.jsx';
 import ProductDetailsPage from './pages/ProductDetailsPage';
 
 // Admin entry
@@ -31,6 +32,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/new-arrivals" element={<NewArrivals />} />
         <Route path="/best-seller" element={<BestSellerPage />} />
         <Route path="/product/:id" element={<ProductDetailsPage />} />
         <Route path="/admin/*" element={<AdminApp />} />
