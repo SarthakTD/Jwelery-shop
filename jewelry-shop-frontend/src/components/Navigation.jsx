@@ -4,7 +4,7 @@ const Navigation = () => {
     const navItems = [
         { name: 'New Arrivals', href: '/new-arrivals' },
         { name: 'Best Seller', href: '/best-seller' },
-        { name: 'Fine Silver', href: '#' },
+        { name: 'Fine Silver', href: '/fine-silver' },
         { name: 'Fine Jewellery', href: '#', badge: 'new' },
         { name: 'Emily In Paris', href: '#', badge: 'trending' },
         { name: 'Shraddha\'s Favourite', href: '#' },

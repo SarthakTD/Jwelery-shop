@@ -10,7 +10,8 @@ import CategoryShowcase from './components/CategoryShowcase';
 import BestSellerPage from './pages/BestSellerPage';
 import NewArrivals from './components/NewArrivals.jsx';
 import ProductDetailsPage from './pages/ProductDetailsPage';
-
+// import FineSilver from './pages/FineSilver.jsx';
+import FineSilver, { FineSilverDetails } from "./pages/FineSilver.jsx";
 // Admin entry
 import AdminApp from './admin/AdminApp';
 
@@ -36,6 +37,11 @@ function App() {
         <Route path="/best-seller" element={<BestSellerPage />} />
         <Route path="/product/:id" element={<ProductDetailsPage />} />
         <Route path="/admin/*" element={<AdminApp />} />
+        
+        <Route path="/fine-silver" element={<FineSilver />} />
+        <Route path="/fine-silver/:id" element={<FineSilverDetails />} />
+
+
       </Routes>
     </BrowserRouter>
   );
