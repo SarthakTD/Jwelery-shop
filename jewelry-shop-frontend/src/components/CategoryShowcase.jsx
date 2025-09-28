@@ -1,8 +1,8 @@
-//There is need of Adding Multiple Pages for Categories
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Category.css';
 
-// Import images from src/assets/images
+// Import images
 import MangalsutraImg from '../assets/images/Type/Mangalsutra.png';
 import Earring from '../assets/images/Type/Earring.jpeg';
 import Bracelet from '../assets/images/Type/Bracelet.webp';
@@ -11,25 +11,29 @@ import Necklace from '../assets/images/Type/Necklace.png';
 import Ring from '../assets/images/Type/Ring.jpg';
 
 const categories = [
-  { name: "Necklaces", image: Necklace },
-  { name: "Ring", image: Ring },
-  { name: "Earring", image: Earring },
-  { name: "Bracelet", image: Bracelet },
-  { name: "Mens", image: Mens },
-  { name: "Mangalsutra", image: MangalsutraImg },
+  { name: 'Necklaces', image: Necklace, path: '/necklaces' },
+  { name: 'Ring', image: Ring, path: '/ring' },
+  { name: 'Earring', image: Earring, path: '/earring' },
+  { name: 'Bracelet', image: Bracelet, path: '/bracelet' },
+  { name: 'Mens', image: Mens, path: '/mens' },
+  { name: 'Mangalsutra', image: MangalsutraImg, path: '/mangalsutra' },
 ];
 
 const CategoryShowcase = () => {
   return (
     <section className="category-showcase">
-      <h2 className="title">Everyday Demifine Jewellery</h2>
-      <div className="categories">
-        {categories.map((cat, i) => (
-          <div key={i} className="category-card">
-            <img src={cat.image} alt={cat.name} />
-            <p>{cat.name}</p>
-          </div>
-        ))}
+      <div className="inner">
+        <h2 className="title">Everyday Demifine Jewellery</h2>
+
+        {/* Grid: 3 columns (desktop/tablet), 2 columns (mobile) */}
+        <div className="categories">
+          {categories.map((cat, i) => (
+            <Link key={i} to={cat.path} className="category-card">
+              <img src={cat.image} alt={cat.name} />
+              <p>{cat.name}</p>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );
