@@ -10,8 +10,8 @@ import CategoryShowcase from './components/CategoryShowcase';
 import BestSellerPage from './pages/BestSellerPage';
 import NewArrivals from './components/NewArrivals.jsx';
 import ProductDetailsPage from './pages/ProductDetailsPage';
-// import FineSilver from './pages/FineSilver.jsx';
 import FineSilver, { FineSilverDetails } from "./pages/FineSilver.jsx";
+
 // Admin entry
 import AdminApp from './admin/AdminApp';
 
