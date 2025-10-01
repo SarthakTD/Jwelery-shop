@@ -7,6 +7,7 @@ import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import CategoryShowcase from './components/CategoryShowcase';
 import VideoCardsSection from "./components/VideoCardsSection";
+import CustomJewellery from './components/CustomJewellery';
 
 import BestSellerPage from './pages/BestSellerPage';
 import NewArrivals from './components/NewArrivals.jsx';
@@ -31,6 +32,7 @@ const Home = () => (
     <Hero />
     <CategoryShowcase />
     <VideoCardsSection />
+    <CustomJewellery /> 
   </>
 );
 
