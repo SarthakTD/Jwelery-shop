@@ -282,27 +282,35 @@ h2, h3 {
 
 /* ================= Mobile / Very Small Screens (<600px) ================= */
 @media (max-width: 600px) {
-  .grid {
-    grid-template-columns: 1fr; /* 1 card per row */
-    gap: 10px;
-  }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+  gap: 20px;
+}
 
-  .detail-container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 1.2rem;
-  }
+.detail-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  min-height: 420px; /* bigger min-height for consistency */
+}
 
-  .detail-info {
-    width: 100%;
-  }
+.detail-info {
+  flex: 1; /* take up all remaining vertical space */
+  display: flex;
+  flex-direction: column;
+}
 
-  .info-flex {
-    flex-direction: column;
-    gap: 0.8rem;
-  }
-
+.info-flex {
+  flex-grow: 1; /* pushes button to bottom */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
   .btn-enquire {
     order: 3;
     width: 100%;
@@ -320,3 +328,4 @@ h2, h3 {
     margin-right: 5px;
   }
 }
+  
