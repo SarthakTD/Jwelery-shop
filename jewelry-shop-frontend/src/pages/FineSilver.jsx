@@ -111,7 +111,11 @@ function FineSilverDetails() {
             <div className="info-flex">
               <ul className="highlights">
                 {product.highlights.map((h, i) => <li key={i}>{h.title}</li>)}
+                <Link to="/contact" className="btn-enquire">
+                Enquire Now
+              </Link>
               </ul>
+              
 
               <div className="specs">
                 <h3>Product Specifications</h3>
