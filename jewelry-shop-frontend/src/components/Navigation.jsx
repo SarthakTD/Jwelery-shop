@@ -5,11 +5,6 @@ const Navigation = () => {
         { name: 'New Arrivals', href: '/new-arrivals' },
         { name: 'Best Seller', href: '/best-seller' },
         { name: 'Fine Silver', href: '/fine-silver' },
-        { name: 'Fine Jewellery', href: '#', badge: 'new' },
-        { name: 'Emily In Paris', href: '#', badge: 'trending' },
-        { name: 'Shraddha\'s Favourite', href: '#' },
-        { name: 'Demi-fine Jewellery', href: '#' },
-        { name: 'Gifting', href: '#' },
         { name: 'About Us', href: '#' }
     ];
 
@@ -19,10 +14,10 @@ const Navigation = () => {
                 <ul className="nav-menu">
                     {navItems.map((item, index) => (
                         <li key={index}>
-                            <NavLink to={item.href} className={item.badge ? `nav-badge ${item.badge}` : ''}>
+                            <a href={item.href} className={item.badge ? `nav-badge ${item.badge}` : ''}>
                                 {item.name}
                                 {item.badge && <span className="badge-text">{item.badge}</span>}
-                            </NavLink>
+                            </a>
                         </li>
                     ))}
                 </ul>

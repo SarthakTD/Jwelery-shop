@@ -23,7 +23,8 @@ const CategoryShowcase = () => {
   return (
     <section className="category-showcase">
       <div className="inner">
-        <h2 className="title">Everyday Demifine Jewellery</h2>
+        {/* Remove or change the heading below if not needed */}
+        {/* <h2 className="title">Everyday Demifine Jewellery</h2> */}
 
         {/* Grid: 3 columns (desktop/tablet), 2 columns (mobile) */}
         <div className="categories">
