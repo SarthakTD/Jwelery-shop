@@ -32,7 +32,12 @@ const ProductDetailsPage = () => {
       <div className="container">
         <nav className="breadcrumb">
           <Link to="/">Home</Link> <span>›</span>
-          <Link to="/best-seller"> Best Seller</Link> <span>›</span>
+          {location.state?.fromNewArrivals ? (
+            <Link to="/new-arrivals"> New Arrival</Link>
+          ) : (
+            <Link to="/best-seller"> Best Seller</Link>
+          )}
+          <span>›</span>
           <span>{p.title || p.name}</span>
         </nav>
 

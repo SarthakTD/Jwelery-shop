@@ -1,4 +1,5 @@
 import React from 'react';
+import './NewArrivals.css';
 import { Link } from 'react-router-dom';
 const products = [
   ...[...Array(24)].map((_, i) => {
@@ -74,12 +75,12 @@ const products = [
 ];
 export default function NewArrivals() {
   return (
-    <main className="page page-best-seller">
-      <section className="container">
-        <div className="grid">
+    <main className="new-arrivals-container">
+      <section className="new-arrivals-section">
+        <div className="new-arrivals-grid">
           {products.map(product => (
-            <article key={product.id} className="card">
-              <div className="thumb">
+            <article key={product.id} className="new-arrival-item">
+              <div className="new-arrival-thumb">
                 <img
                   src={product.image}
                   alt={product.name}
@@ -87,15 +88,15 @@ export default function NewArrivals() {
                   onError={e => { e.currentTarget.src = 'https://via.placeholder.com/400x500?text=Product'; }}
                 />
               </div>
-              <div className="info">
-                <h3 className="title">{product.name}</h3>
-                <div className="meta">
-                  <span className="price">₹ {10000 + product.id * 500}</span>
+              <div className="new-arrival-info">
+                <h3 className="new-arrival-title">{product.name}</h3>
+                <div className="new-arrival-meta">
+                  <span className="new-arrival-price">₹ {10000 + product.id * 500}</span>
                 </div>
                 <Link
                   to={`/product/${product.id}`}
                   className="btn-primary outline"
-                  state={{ product }}
+                  state={{ product, fromNewArrivals: true }}
                 >
                   Explore
                 </Link>
