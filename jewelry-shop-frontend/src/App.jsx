@@ -23,9 +23,11 @@ import EarringPage from './pages/category/EarringPage.jsx';
 import BraceletPage from './pages/category/BraceletPage.jsx';
 import MensPage from './pages/category/MensPage.jsx';
 import MangalsutraPage from './pages/category/MangalsutraPage.jsx';
-
+import StoreLocator from './components/StoreLocator.jsx';
+import StoresPage from './pages/StoresPage.jsx';
 
 import './App.css';
+
 
 const Home = () => (
   <>
@@ -33,6 +35,7 @@ const Home = () => (
     <CategoryShowcase />
     <VideoCardsSection />
     <CustomJewellery /> 
+    <StoreLocator/>
   </>
 );
 
@@ -59,8 +62,8 @@ function App() {
         <Route path="/bracelet" element={<BraceletPage />} />
         <Route path="/mens" element={<MensPage />} />
         <Route path="/mangalsutra" element={<MangalsutraPage />} />
-
-
+         {/* ✅ Add this route for your new store page */}
+        <Route path="/stores" element={<StoresPage />} />
       </Routes>
     </BrowserRouter>
   );
