@@ -1,0 +1,104 @@
+/* responsive.css — single global responsive layer */
+
+/* 1) Reset and base */
+*,
+*::before,
+*::after { box-sizing: border-box; } /* predictable sizing */ /* [web:91] */
+html { -webkit-text-size-adjust: 100%; } /* iOS zoom behavior */ /* [web:91] */
+body { margin: 0; font-family: Arial, sans-serif; line-height: 1.6; color: #333; overflow-x: hidden; } /* [web:91] */
+img, svg, video, canvas { display: block; max-width: 100%; height: auto; } /* fluid media */ /* [web:91] */
+iframe { max-width: 100%; border: 0; } /* fluid embeds */ /* [web:91] */
+:root { color-scheme: light dark; } /* honor OS theme */ /* [web:91] */
+
+/* 2) Container and layout primitives */
+.container { width: min(100% - 40px, 1200px); margin-inline: auto; } /* global container */ /* [web:91] */
+.flex { display: flex; } /* flex helper */ /* [web:104] */
+.flex-center { display: flex; justify-content: center; align-items: center; } /* centering */ /* [web:43] */
+.space-between { display: flex; justify-content: space-between; align-items: center; } /* nav/header */ /* [web:44] */
+.grid { display: grid; gap: 16px; } /* grid helper */ /* [web:91] */
+
+/* 3) Breakpoints (mobile‑first) */
+:root{
+  --bp-sm: 36rem;   /* 576px */
+  --bp-md: 48rem;   /* 768px */
+  --bp-lg: 64rem;   /* 1024px */
+  --bp-xl: 80rem;   /* 1280px */
+} /* central breakpoints */ /* [web:68] */
+
+/* 4) Fluid type scale with clamp (accessible bounds) */
+:root{
+  --fs-0: clamp(0.875rem, 0.80rem + 0.4vw, 1rem);
+  --fs-1: clamp(1rem, 0.95rem + 0.6vw, 1.125rem);
+  --fs-2: clamp(1.25rem, 1.15rem + 0.8vw, 1.5rem);
+  --fs-3: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+} /* fluid typography */ /* [web:73] */
+body { font-size: var(--fs-1); } /* readable default */ /* [web:73] */
+h1 { font-size: var(--fs-3); line-height: 1.15; } /* scalable headings */ /* [web:73] */
+h2 { font-size: var(--fs-2); line-height: 1.2; } /* headings */ /* [web:73] */
+
+/* 5) Header and navigation defaults (center on desktop) */
+.header { background:#fff; position: relative; z-index: 2; } /* base header */ /* [web:91] */
+.header .container { display:flex; align-items:center; justify-content: space-between; gap:30px; flex-wrap: nowrap; } /* desktop row */ /* [web:44] */
+.logo h1 { font-weight: 700; letter-spacing: 2px; margin: 0; } /* branding */ /* [web:91] */
+
+/* Nav bar */
+.main-nav { background:#fff; border-bottom: 2px solid #f0f0f0; padding: 15px 0; overflow-x: auto; white-space: nowrap; } /* scrollable on small view */ /* [web:91] */
+.nav-menu { display:flex; gap:30px; list-style:none; margin:0; padding:0 20px; justify-content: center; } /* centered desktop */ /* [web:44] */
+.nav-menu li { flex-shrink:0; } /* prevent collapse */ /* [web:104] */
+.nav-menu a { text-decoration:none; color:#666; font-weight:600; padding:10px 0; position:relative; transition:.3s; font-size:14px; } /* link styling */ /* [web:91] */
+.nav-menu a:hover { color:#c9a961; transform: translateY(-2px); } /* affordance */ /* [web:91] */
+
+/* 6) Search and actions */
+.search-container { flex:1; max-width: 500px; position: relative; display:flex; } /* layout */ /* [web:91] */
+.search-input { width:100%; padding:14px 50px 14px 20px; border:2px solid #ddd; border-radius:30px; background:#f8f8f8; transition:.3s; } /* input */ /* [web:91] */
+.search-input:focus { outline:none; border-color:#c9a961; box-shadow:0 0 0 4px rgba(201,169,97,.1); } /* focus state */ /* [web:91] */
+.header-actions { display:flex; gap:20px; align-items:center; } /* icons row */ /* [web:44] */
+
+/* 7) Hero defaults */
+.hero { position:relative; min-height: 650px; background: linear-gradient(135deg,#8b7355,#a68968); overflow:hidden; padding-bottom:80px; } /* hero shell */ /* [web:91] */
+.hero-content { display:flex; align-items:center; min-height: 650px; } /* two-column hero */ /* [web:44] */
+.hero-image, .hero-text { flex:1; padding:40px; } /* halves */ /* [web:44] */
+.slides-container { position: relative; width:100%; height:500px; display:flex; align-items:center; justify-content:center; } /* carousel area */ /* [web:91] */
+.hero-model-image { max-width:100%; max-height:100%; object-fit: cover; border-radius:20px; transition: 1s; box-shadow:0 20px 40px rgba(0,0,0,.3); } /* image */ /* [web:91] */
+
+/* 8) Responsive media helpers (maps, videos) */
+.embed { position:relative; width:100%; padding-bottom:56.25%; height:0; overflow:hidden; } /* 16:9 wrapper */ /* [web:91] */
+.embed > iframe, .embed > video { position:absolute; inset:0; width:100%; height:100%; border:0; } /* fit container */ /* [web:91] */
+
+/* 9) Mobile adaptations */
+@media (max-width: 64rem) { /* <= 1024px */
+  .hero-text { padding: 30px 25px; } /* tighter padding */ /* [web:88] */
+  .slides-container { height: 450px; } /* smaller hero */ /* [web:88] */
+} /* tablet adjustments */ /* [web:88] */
+
+@media (max-width: 48rem) { /* <= 768px */
+  .header .container { flex-direction: column; gap: 15px; } /* stack header */ /* [web:88] */
+  .logo { order:1; text-align:center; } /* center brand */ /* [web:44] */
+  .search-and-actions { order:2; display:flex; align-items:center; gap:15px; width:100%; } /* row below */ /* [web:44] */
+  .search-container { max-width:none; } /* full width input */ /* [web:91] */
+  .nav-menu { gap:20px; padding:0 10px; justify-content:center; } /* centered mobile */ /* [web:44] */
+  .nav-menu a { font-size:13px; } /* readable size */ /* [web:73] */
+  .hero { min-height:600px; padding-bottom:100px; } /* hero height */ /* [web:88] }
+  .hero-content { flex-direction: column; text-align:center; min-height:600px; } /* stack columns */ /* [web:44] */
+  .hero-image { order:1; padding:25px; min-height:380px; display:flex; justify-content:center; align-items:center; } /* image first */ /* [web:44] */
+  .slides-container { height:380px; } /* smaller slider */ /* [web:88] */
+} /* mobile layout */ /* [web:88] */
+
+@media (max-width: 30rem) { /* <= 480px */
+  .container { width: min(100% - 30px, 1200px); } /* tighter gutters */ /* [web:91] */
+  .nav-menu { gap:15px; padding:0 5px; } /* compact nav */ /* [web:88] */
+  .nav-menu a { font-size:12px; } /* compact text */ /* [web:73] */
+  .slides-container { height:320px; } /* compact hero */ /* [web:88] */
+} /* small phones */ /* [web:88] */
+
+/* 10) Accessibility and preferences */
+:focus-visible { outline: 3px solid rgba(201,169,97,.6); outline-offset: 2px; } /* clear focus */ /* [web:91] */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+} /* motion-safe */ /* [web:91] */
+
+/* 11) Print */
+@media print {
+  .hero-nav, .slide-indicators, .slide-progress { display: none !important; } /* hide controls */ /* [web:57] */
+  .hero { min-height: auto; background: #fff !important; } /* printer friendly */ /* [web:57] */
+} /* print rules */ /* [web:57] */
